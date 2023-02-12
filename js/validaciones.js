@@ -1,9 +1,12 @@
-const inputBirth = document.querySelector("#birth")
-
-inputBirth.addEventListener("blur", (evento) =>{
-    validarNacimiento(evento.target)
-})
-
+export function valida(input){
+    const tipoDeInput = input.dataset.type
+    if(validadores[tipoDeInput]){
+        validadores[tipoDeInput](input)
+    }
+}
+const validadores = {
+    nacimiento: (input) => validarNacimiento(input)
+}
 function validarNacimiento(input){
     const fechaCliente = new Date(input.value)
     mayorDeEdad(fechaCliente)
